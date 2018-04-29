@@ -15,4 +15,3 @@ export const addQuestionToQuiz = (postData) => {
   return null
 }
 
-

@@ -7,10 +7,14 @@ import {
   Platform,
   StatusBar,
 } from 'react-native'
+import QuizList from './components/QuizList'
+import AddQuiz from './components/AddQuiz'
+import QuizDetails from './components/QuizDetails'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { Constants } from 'expo'
-import { brown, orange } from './utils/colors'
+import { brown, orange, tan } from './utils/colors'
 import reducer from './reducers'
+import { FontAwesome, Ionicons } from '@expo/vector-icons'
 
 function FlashCardsStatusBar ({backgroundColor, ...props}){
   return(
@@ -19,6 +23,57 @@ function FlashCardsStatusBar ({backgroundColor, ...props}){
     </View>
   )
 }
+
+const Tabs = TabNavigator({
+    Quizzes: {
+      screen: QuizList,
+      navigationOptions: {
+        tabBarLabel: 'Quizzes',
+        tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+      },
+    },
+    AddQuiz: {
+      screen: AddQuiz,
+      navigationOptions: {
+        tabBarLabel: 'Add Quiz',
+        tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
+      },
+    },
+  },
+  {
+    navigationOptions: {
+      header: null
+    },
+    tabBarOptions: {
+      activeTintColor: Platform.OS === 'ios' ? orange : tan,
+      style: {
+        height: 56,
+        backgroundColor: Platform.OS === 'ios' ? tan : orange,
+        shadowColor: 'rgba(0, 0, 0, 0.24)',
+        shadowOffset: {
+          width: 0,
+          height: 3
+        },
+        shadowRadius: 6,
+        shadowOpacity: 1
+      }
+    }
+  })
+
+const MainNavigator = StackNavigator({
+  Quizzes: {
+    screen: Tabs,
+  },
+  QuizDetails: {
+    screen: QuizDetails,
+    navigationOptions: {
+      headerTintColor: tan,
+      headerStyle: {
+        backgroundColor: orange,
+      }
+    }
+  },
+})
 
 export default class App extends React.Component {
 
@@ -33,10 +88,11 @@ export default class App extends React.Component {
       <Provider store={createStore(reducer)}>
         <View style={ {flex: 1} }>
           <FlashCardsStatusBar backgroundColor={orange} barStyle="light-content" />
-          <Text>Open up App.js to start working on your app!</Text>
+          <MainNavigator/>
         </View>
       </Provider>
     )
   }
 }
+
 
