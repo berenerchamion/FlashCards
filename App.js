@@ -9,6 +9,8 @@ import {
   StatusBar,
 } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
+import { Constants } from 'expo'
+import { brown } from './utils/colors'
 import reducer from './reducers'
 
 const styles = StyleSheet.create({
@@ -19,6 +21,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 })
+
+function FlashCardsStatusBar ({backgroundColor, ...props}){
+  return(
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
+}
 
 export default class App extends React.Component {
 
@@ -32,9 +42,8 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(reducer)}>
         <View style={styles.container}>
+          <FlashCardsStatusBar backgroundColor={brown} barStyle="light-content" />
           <Text>Open up App.js to start working on your app!</Text>
-          <Text>Changes you make will automatically reload.</Text>
-          <Text>Shake your phone to open the developer menu.</Text>
         </View>
       </Provider>
     )

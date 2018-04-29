@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
 ## Table of Contents
-
+* [About Beer Flash Cards](#about-beer-flash-cards)
 * [Updating to New Releases](#updating-to-new-releases)
 * [Available Scripts](#available-scripts)
   * [npm start](#npm-start)
@@ -26,6 +26,24 @@ Below you'll find information about performing common tasks. The most recent ver
   * [Networking](#networking)
   * [iOS Simulator won't open](#ios-simulator-wont-open)
   * [QR Code does not scan](#qr-code-does-not-scan)
+
+## About Beer Flash Cards
+So this app will really test your beer knowledge. There are a few sample quizzes, but definitely feel free to build your own.
+
+Sample Quizzes: 
+
+1. Beer 101
+ * When was the Reinheitsgebot enacted?
+  * Answer: 1516
+ * In what century were hops first introduced in beer? 
+  * 9th
+ * In what coutry was beer invented?
+  * Sumeria
+2. India Pale Ales
+3. Stouts
+4. Lagers
+5. Regional Beers
+ 
 
 ## Updating to New Releases
 
