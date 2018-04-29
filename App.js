@@ -2,7 +2,6 @@ import React from 'react'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import {
-  Text,
   View,
   Platform,
   StatusBar,
@@ -12,7 +11,7 @@ import AddQuiz from './components/AddQuiz'
 import QuizDetails from './components/QuizDetails'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { Constants } from 'expo'
-import { brown, orange, tan } from './utils/colors'
+import { orange, tan } from './utils/colors'
 import reducer from './reducers'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 

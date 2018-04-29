@@ -6,18 +6,23 @@ import {
   StyleSheet,
   Platform,
   TouchableOpacity,
+  FlatList,
 } from 'react-native'
 
 class QuizList extends Component {
   state = {
-
   }
 
   render(){
     return (
-      <View>
-        <Text>Hey there, this is the quiz list.</Text>
-      </View>
+      <FlatList
+        data={[
+          {key: 'a', title: 'this is a title'},
+          {key: 'b', title: 'this is another title'},
+          {key: 'c', title: 'this is yet another title'},
+          ]}
+        renderItem={({item}) => <Text>{item.key}: {item.title}</Text>}
+      />
     )
   }
 }
