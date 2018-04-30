@@ -11,12 +11,25 @@ import {
 class QuizDetails extends Component{
 
   render(){
+
+    const { quizId } = this.props
+
     return(
       <View>
-        <Text>This is the quiz details...</Text>
+        <Text>Hello there - alomst got it. </Text>
+        <Text>quizId is {quizId}</Text>
       </View>
     )
   }
 }
 
-export default (QuizDetails)
+function mapStateToProps (state, { navigation }){
+  const { quizId } = navigation.state.params
+
+  return{
+    quizId,
+  }
+
+}
+
+export default connect (mapStateToProps, ) (QuizDetails)

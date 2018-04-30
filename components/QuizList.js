@@ -56,7 +56,13 @@ class QuizList extends Component {
   }
 
   renderItem = ({ item }) => {
-    return <QuizListItem { ...item } />
+    return <TouchableOpacity onPress = {() => this.props.navigation.navigate(
+      'QuizDetails',
+      {quizId: item.key}
+    )}
+    >
+      <QuizListItem { ...item } />
+    </TouchableOpacity>
   }
 
   render(){
@@ -64,14 +70,20 @@ class QuizList extends Component {
 
     return (
       <View style={styles.container}>
-        <FlatList
-          data={quizzes}
-          renderItem={this.renderItem}
-        />
+          <FlatList
+            data={quizzes}
+            renderItem={this.renderItem}
+          />
       </View>
 
     )
   }
 }
 
-export default (QuizList)
+function mapStateToProps (quizzes){
+  return {
+    quizzes
+  }
+}
+
+export default connect (mapStateToProps,)(QuizList)
