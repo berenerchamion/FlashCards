@@ -34,7 +34,7 @@ class QuizList extends Component {
         {key: 'h', title: 'this is another title', subtitle: 'this is a subtitle'},
         {key: 'i', title: 'this is yet another title', subtitle: 'this is a subtitle'},
         {key: 'j', title: 'this is a title', subtitle: 'this is a subtitle'},
-        {key: 'b', title: 'this is another title', subtitle: 'this is a subtitle'},
+        {key: 'xx', title: 'this is another title', subtitle: 'this is a subtitle'},
         {key: 'l', title: 'this is yet another title', subtitle: 'this is a subtitle'},
         {key: 'm', title: 'this is a title', subtitle: 'this is a subtitle'},
         {key: 'n', title: 'this is another title', subtitle: 'this is a subtitle'},

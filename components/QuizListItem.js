@@ -5,11 +5,11 @@ import {
 } from 'react-native'
 
 const styles = StyleSheet.create({
-  item: {
-    padding: 15,
-    fontSize: 20,
-    height: 60,
-  },
+    item: {
+      padding: 15,
+      fontSize: 20,
+      height: 60,
+    },
 })
 
 export default function QuizListItem ({ title, subtitle }) {
