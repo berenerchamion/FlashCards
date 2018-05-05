@@ -68,7 +68,7 @@ function SubmitBtn ({ onPress }) {
 class AddQuiz extends Component{
 
   state={
-    quizId: 'Hi there!',
+    quizId: null,
     quizTitle: null,
   }
 
@@ -106,6 +106,7 @@ class AddQuiz extends Component{
 
   render(){
     const { quizId } = this.state
+    const { quizTitle } = this.state
     return(
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <Text style={styles.item}>Create a quiz by entering a name and submitting it. Then you can add questions to it.</Text>
@@ -115,6 +116,7 @@ class AddQuiz extends Component{
           underlineColorAndroid={orange}
           maxLength={50}
           placeholder="Give your quiz a name..."
+          value={quizTitle}
           onChangeText={(quizTitle)=> this.setState({quizTitle})}
         />
         <SubmitBtn onPress={this.submit} />
