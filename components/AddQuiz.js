@@ -9,8 +9,10 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native'
-import { uuidv4 } from '../utils/FlashCardsAPI'
+import { addNewQuiz } from '../actions'
+import { uuidv4, addQuiz } from '../utils/FlashCardsAPI'
 import { tan, orange } from '../utils/colors'
+import { NavigationActions } from 'react-navigation'
 
 const styles = StyleSheet.create({
   container: {
@@ -21,13 +23,16 @@ const styles = StyleSheet.create({
   item: {
     flex: 1,
     padding: 5,
-    fontSize: 20,
+    fontSize: 22,
     height: 40,
   },
   submitBtnText: {
     color: tan,
     fontSize: 22,
     textAlign: 'center',
+  },
+  textInput: {
+    fontSize: 22,
   },
   iosSubmitBtn: {
     backgroundColor: orange,
@@ -76,18 +81,38 @@ class AddQuiz extends Component{
   }
 
   submit = () => {
+    const quizId = this.state
+    const quizTitle = this.state
     console.log("Got a submit...")
+
+    this.props.dispatch(addNewQuiz({
+      [quizId]: quizTitle
+    }))
+
+    this.setState(() => ({
+      quiId: null,
+      quizTitle: null,
+    }))
+
+    addQuiz(quizId, quizTitle)
+
+    this.toHome()
+
+  }
+
+  toHome = () => {
+    this.props.navigation.dispatch(NavigationActions.back({key: 'AddQuiz'}))
   }
 
   render(){
     const { quizId } = this.state
     return(
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-        <Text style={styles.item}>This is the add quiz screen...</Text>
-        <Text style={styles.item}>quizId: {quizId}</Text>
+        <Text style={styles.item}>Create a quiz by entering a name and submitting it. Then you can add questions to it.</Text>
         <TextInput
-          style={{height: 40}}
+          style={[styles.textInput, {height: 40}]}
           autoCapitalize="words"
+          underlineColorAndroid={orange}
           maxLength={50}
           placeholder="Give your quiz a name..."
           onChangeText={(quizTitle)=> this.setState({quizTitle})}

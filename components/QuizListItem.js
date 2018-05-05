@@ -6,8 +6,9 @@ import {
 
 const styles = StyleSheet.create({
     item: {
-      padding: 15,
-      fontSize: 20,
+      flex: 1,
+      padding: 5,
+      fontSize: 22,
       height: 60,
     },
 })

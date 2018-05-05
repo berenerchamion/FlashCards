@@ -26,10 +26,10 @@ export const fetchOneQuiz = id => {
   }
 }
 
-export const addNewQuiz = (postData, cb) => {
-  return dispatch => {
-    addQuiz(postData).then(() => cb())
-    dispatch({ type: ADD_QUIZ, postData})
+export function addNewQuiz (postData){
+  return {
+    type: ADD_QUIZ,
+    quiz: postData,
   }
 }
 

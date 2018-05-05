@@ -10,8 +10,10 @@ export const fetchQuiz = (id) => {
   return null
 }
 
-export const addQuiz = (quiz, key) => {
-  return null
+export const addQuiz = (id, quiz) => {
+  return AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
+    [id]:quiz
+  }))
 }
 
 export const addQuestionToQuiz = (postData) => {

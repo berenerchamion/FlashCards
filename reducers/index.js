@@ -5,8 +5,13 @@ import {
   ADD_QUIZ,
 } from "../actions"
 
-function quizzes (state=[], action){
+function quizzes (state={}, action){
   switch(action.type){
+    case ADD_QUIZ:
+      return {
+        ...state,
+        ...action.quiz
+      }
     default:
       return state
   }
