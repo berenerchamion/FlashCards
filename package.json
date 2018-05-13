@@ -13,7 +13,9 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "jest"
+    "test": "jest",
+    "react-devtool": "react-devtools",
+    "redux-devtool": "remotedev"
   },
   "jest": {
     "preset": "jest-expo"
@@ -21,10 +23,13 @@
   "dependencies": {
     "expo": "^25.0.0",
     "react": "16.2.0",
+    "react-devtools": "^3.2.1",
     "react-native": "~0.52.0",
     "react-navigation": "^1.5.11",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
+    "remote-redux-devtools": "^0.5.12",
+    "remotedev-server": "^0.2.4",
     "uuid-js": "^0.7.5"
   }
 }

@@ -1,18 +1,21 @@
 import { AsyncStorage } from 'react-native'
 
-export const FLASHCARDS_STORAGE_KEY = 'HOBFlashCards:quizzes'
+export const FLASHCARDS_STORAGE_KEY = 'HOBFlashCards:quizzesv9'
 
 export const fetchQuizzes = () => {
-  return null
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then(results => {
+      return JSON.parse(results)
+    })
 }
 
 export const fetchQuiz = (id) => {
   return null
 }
 
-export const addQuiz = (id, quiz) => {
+export function addQuiz(id, title) {
   return AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
-    [id]:quiz
+    [id]: { key: id, title: title, questions:[] }
   }))
 }
 

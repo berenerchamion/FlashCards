@@ -10,11 +10,10 @@ export const FETCH_QUIZ = 'FETCH_QUIZ'
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const ADD_QUIZ = 'ADD_QUIZ'
 
-export const fetchAllQuizzes = () => {
-  return dispatch => {
-    fetchQuizzes().then(quizzes => {
-      dispatch({ type: FETCH_QUIZZES, quizzes })
-    })
+export function fetchAllQuizzes(quizzes){
+  return {
+    type: FETCH_QUIZZES,
+    quizzes: quizzes,
   }
 }
 
@@ -26,10 +25,10 @@ export const fetchOneQuiz = id => {
   }
 }
 
-export function addNewQuiz (postData){
+export function addNewQuiz (quiz){
   return {
     type: ADD_QUIZ,
-    quiz: postData,
+    quiz: quiz,
   }
 }
 

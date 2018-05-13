@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
   Text,
   StyleSheet,
@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
     },
 })
 
-export default function QuizListItem ({ title, subtitle }) {
+export default function QuizListItem ({ id, title }) {
   return (
-    <Text style={styles.item}>{title}: {subtitle}</Text>
+    <Text style={styles.item}>{title}</Text>
   )
 }

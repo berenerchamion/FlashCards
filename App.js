@@ -14,6 +14,7 @@ import { Constants } from 'expo'
 import { orange, tan } from './utils/colors'
 import reducer from './reducers'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
+import devToolsEnhancer from 'remote-redux-devtools';
 
 function FlashCardsStatusBar ({backgroundColor, ...props}){
   return(
@@ -77,14 +78,16 @@ const MainNavigator = StackNavigator({
 export default class App extends React.Component {
 
   componentDidMount(){
-    console.log("Hey there...")
     debugger
-    console.log("This is pretty cool...")
   }
 
   render() {
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={
+        createStore(reducer,
+          devToolsEnhancer()
+          )
+      }>
         <View style={ {flex: 1} }>
           <FlashCardsStatusBar backgroundColor={orange} barStyle="light-content" />
           <MainNavigator/>

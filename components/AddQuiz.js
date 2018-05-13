@@ -68,33 +68,34 @@ function SubmitBtn ({ onPress }) {
 class AddQuiz extends Component{
 
   state={
-    quizId: null,
-    quizTitle: null,
+    id: null,
+    title: null,
   }
 
   componentDidMount(){
     let key = uuidv4()
     this.setState({
-      quizId: key
+      id: key
     })
-    console.log(key)
   }
 
   submit = () => {
-    const quizId = this.state
-    const quizTitle = this.state
-    console.log("Got a submit...")
+    const { id } = this.state
+    const { title } = this.state
+    const key = id
 
     this.props.dispatch(addNewQuiz({
-      [quizId]: quizTitle
+      key: key,
+      title,
+      questions: [],
     }))
+
+    addQuiz(id, title)
 
     this.setState(() => ({
-      quiId: null,
-      quizTitle: null,
+      id: null,
+      title: null,
     }))
-
-    addQuiz(quizId, quizTitle)
 
     this.toHome()
 
@@ -105,8 +106,7 @@ class AddQuiz extends Component{
   }
 
   render(){
-    const { quizId } = this.state
-    const { quizTitle } = this.state
+    const { title } = this.state
     return(
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <Text style={styles.item}>Create a quiz by entering a name and submitting it. Then you can add questions to it.</Text>
@@ -116,8 +116,8 @@ class AddQuiz extends Component{
           underlineColorAndroid={orange}
           maxLength={50}
           placeholder="Give your quiz a name..."
-          value={quizTitle}
-          onChangeText={(quizTitle)=> this.setState({quizTitle})}
+          value={title}
+          onChangeText={(title)=> this.setState({title})}
         />
         <SubmitBtn onPress={this.submit} />
         <View style={{height: 100}} />
