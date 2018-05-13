@@ -31,9 +31,10 @@ class QuizList extends Component {
   }
 
   renderItem = ({ item }) => {
+    console.log(item)
     return <TouchableOpacity onPress = {() => this.props.navigation.navigate(
       'QuizDetails',
-      {quizId: item.key}
+      {quiz: item}
     )}
     >
       <QuizListItem { ...item } />

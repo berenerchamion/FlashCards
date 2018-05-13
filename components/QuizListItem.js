@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
     },
 })
 
-export default function QuizListItem ({ id, title }) {
+export default function QuizListItem ({ id, title, questions}) {
   return (
-    <Text style={styles.item}>{title}</Text>
+    <Text style={styles.item}>{title} - #Questions: {questions.length}</Text>
   )
 }

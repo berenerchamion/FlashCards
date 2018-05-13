@@ -98,7 +98,6 @@ class AddQuiz extends Component{
     }))
 
     this.toHome()
-
   }
 
   toHome = () => {
