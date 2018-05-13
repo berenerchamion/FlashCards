@@ -30,6 +30,10 @@ function quizzes (state=initialState, action){
           ...state,
           quizzes: Object.keys(quizzes).map(function(k) { return quizzes[k] })
         }
+    case ADD_QUESTION:
+      return{
+        ...state,
+      }
     default:
       return{
         ...state

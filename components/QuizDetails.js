@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingTop: 22
   },
-  item: {
+  quizItem: {
     flex: 1,
     padding: 5,
     fontSize: 22,
@@ -73,10 +73,10 @@ class QuizDetails extends Component{
     const { quiz } = this.props
 
     return(
-      <View>
-        <Text>{quiz.title}</Text>
-        <Text>quizId is {quiz.key}</Text>
-        <Text># of questions: {quiz.questions.length}</Text>
+      <View style={styles.container}>
+        <Text style={styles.quizItem}>{quiz.title}</Text>
+        <Text style={styles.quizItem}>quizId is {quiz.key}</Text>
+        <Text style={styles.quizItem}># of questions: {quiz.questions.length}</Text>
         <AddQuestionBtn onPress={this.addQuestion} />
       </View>
     )
