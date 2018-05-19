@@ -67,6 +67,13 @@ function SubmitBtn ({ onPress }) {
 
 class AddQuiz extends Component{
 
+  static navigationOptions = ({ navigation }) =>{
+
+    return {
+      title: 'Add a New Quiz... '
+    }
+  }
+
   state={
     id: null,
     title: null,

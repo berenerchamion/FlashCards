@@ -9,6 +9,7 @@ import {
 import QuizList from './components/QuizList'
 import AddQuiz from './components/AddQuiz'
 import QuizDetails from './components/QuizDetails'
+import AddQuestion from './components/AddQuestion'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { Constants } from 'expo'
 import { orange, tan } from './utils/colors'
@@ -66,6 +67,15 @@ const MainNavigator = StackNavigator({
   },
   QuizDetails: {
     screen: QuizDetails,
+    navigationOptions: {
+      headerTintColor: tan,
+      headerStyle: {
+        backgroundColor: orange,
+      }
+    }
+  },
+  AddQuestion: {
+    screen: AddQuestion,
     navigationOptions: {
       headerTintColor: tan,
       headerStyle: {

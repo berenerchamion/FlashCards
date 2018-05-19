@@ -8,8 +8,6 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import {orange, tan} from "../utils/colors"
-import {fetchQuiz} from "../utils/FlashCardsAPI"
-import {getQuiz} from '../actions/index'
 
 function AddQuestionBtn ({ onPress }) {
   return (
@@ -17,6 +15,16 @@ function AddQuestionBtn ({ onPress }) {
       style={Platform.OS === 'ios' ? styles.iosAddQuestionBtn : styles.androidAddQuestionBtn}
       onPress={onPress}>
       <Text style={styles.addQuestionBtnText}>ADD QUESTION</Text>
+    </TouchableOpacity>
+  )
+}
+
+function TakeQuizBtn ({ onPress }) {
+  return (
+    <TouchableOpacity
+      style={Platform.OS === 'ios' ? styles.iosAddQuestionBtn : styles.androidAddQuestionBtn}
+      onPress={onPress}>
+      <Text style={styles.addQuestionBtnText}>TAKE QUIZ</Text>
     </TouchableOpacity>
   )
 }
@@ -64,28 +72,30 @@ const styles = StyleSheet.create({
 
 class QuizDetails extends Component{
 
+  static navigationOptions = ({ navigation }) =>{
+    const {quiz} = navigation.state.params
+
+    return {
+      title: 'Quiz: ' + quiz.title
+    }
+  }
+
   state= {
     loading: false
   }
 
   componentDidMount(){
-    this.loadQuiz()
+
   }
 
-  loadQuiz = () => {
-    this.setState({ loading: true })
+  addQuestion = (quiz) => {
 
-    const { dispatch } = this.props
-
-    fetchQuiz(this.props.navigation.state.params.quiz.key)
-      .then((quiz) => {
-        dispatch(getQuiz(quiz))
-        this.setState({ loading: false })
-      })
+    console.log('Do I have a quiz: ' + quiz.title)
+    this.props.navigation.navigate('AddQuestion',{quiz: quiz})
   }
 
-  addQuestion = () => {
-
+  takeQuiz = () => {
+    console.log('Quiz time!')
   }
 
   render(){
@@ -97,16 +107,19 @@ class QuizDetails extends Component{
         <Text style={styles.quizItem}>{quiz.title}</Text>
         <Text style={styles.quizItem}>quizId is {quiz.key}</Text>
         <Text style={styles.quizItem}># of questions: {quiz.questions.length}</Text>
-        <AddQuestionBtn onPress={this.addQuestion} />
+        <AddQuestionBtn onPress={() => { this.addQuestion(quiz)
+        }} />
+        <TakeQuizBtn onPress={this.takeQuiz} />
       </View>
     )
   }
 }
 
-function mapStateToProps (state){
+function mapStateToProps (state, { navigation }){
+  const { quiz } = navigation.state.params
 
   return{
-    quiz: state.quiz
+    quiz
   }
 
 }
