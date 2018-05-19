@@ -7,8 +7,11 @@ import {
   Platform,
   TouchableOpacity,
   KeyboardAvoidingView,
+  TextInput,
 } from 'react-native'
 import {orange, tan} from "../utils/colors"
+import {addQuiz} from "../utils/FlashCardsAPI"
+import {addNewQuiz} from "../actions"
 
 const styles = StyleSheet.create({
   container: {
@@ -51,21 +54,70 @@ const styles = StyleSheet.create({
   },
 })
 
+function SubmitBtn ({ onPress }) {
+  return (
+    <TouchableOpacity
+      style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.androidSubmitBtn}
+      onPress={onPress}>
+      <Text style={styles.submitBtnText}>ADD QUESTION</Text>
+    </TouchableOpacity>
+  )
+}
+
 class AddQuestion extends Component {
 
   static navigationOptions = ({ navigation }) =>{
     const {quiz} = navigation.state.params
 
     return {
-      title: 'Add a question to ' + quiz.title
+      title: 'Add a question to the quiz...'
     }
+  }
+
+  state = {
+    question: null,
+    answer: null,
+  }
+
+  submit = () => {
+    const { question } = this.state
+    const { answer } = this.state
+
+
+    this.setState(() => ({
+      question: null,
+      answer: null,
+    }))
+
   }
 
   render(){
 
+    const { question } = this.state
+    const { answer } = this.state
+
     return(
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <Text style={styles.item}>Add a question and answer and click save...</Text>
+        <TextInput
+          style={[styles.textInput, {height: 40}]}
+          autoCapitalize="sentences"
+          underlineColorAndroid={orange}
+          maxLength={50}
+          placeholder="Enter the question here..."
+          value={question}
+          onChangeText={(question)=> this.setState({question})}
+        />
+        <TextInput
+          style={[styles.textInput, {height: 40}]}
+          autoCapitalize="sentences"
+          underlineColorAndroid={orange}
+          maxLength={50}
+          placeholder="Enter the answer here..."
+          value={answer}
+          onChangeText={(answer)=> this.setState({answer})}
+        />
+        <SubmitBtn onPress={this.submit} />
         <View style={{height: 100}} />
       </KeyboardAvoidingView>
     )
