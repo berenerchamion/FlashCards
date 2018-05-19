@@ -10,8 +10,6 @@ import {
   TextInput,
 } from 'react-native'
 import {orange, tan} from "../utils/colors"
-import {addQuiz} from "../utils/FlashCardsAPI"
-import {addNewQuiz} from "../actions"
 
 const styles = StyleSheet.create({
   container: {
@@ -70,7 +68,7 @@ class AddQuestion extends Component {
     const {quiz} = navigation.state.params
 
     return {
-      title: 'Add a question to the quiz...'
+      title: 'Add a question to ' + quiz.title
     }
   }
 
@@ -124,10 +122,13 @@ class AddQuestion extends Component {
   }
 }
 
-function mapStateToProps (state){
-  return {
+function mapStateToProps (state, { navigation }){
+  const { quiz } = navigation.state.params
 
+  return{
+    quiz
   }
+
 }
 
 export default connect (mapStateToProps) (AddQuestion)
