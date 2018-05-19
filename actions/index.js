@@ -17,12 +17,11 @@ export function fetchAllQuizzes(quizzes){
   }
 }
 
-export const fetchOneQuiz = id => {
-  return dispatch => {
-    fetchQuiz(id).then(quiz => {
-      dispatch({ type: FETCH_QUIZ, quiz })
-    })
-  }
+export function getQuiz (quiz){
+  return {
+    type: FETCH_QUIZ,
+    quiz: quiz
+    }
 }
 
 export function addNewQuiz (quiz){

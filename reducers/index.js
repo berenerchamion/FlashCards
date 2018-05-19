@@ -30,6 +30,11 @@ function quizzes (state=initialState, action){
           ...state,
           quizzes: Object.keys(quizzes).map(function(k) { return quizzes[k] })
         }
+    case FETCH_QUIZ:
+      return {
+        ...state,
+        quiz: quiz
+      }
     case ADD_QUESTION:
       return{
         ...state,

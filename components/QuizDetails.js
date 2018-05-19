@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import {orange, tan} from "../utils/colors"
-import {addQuiz} from "../utils/FlashCardsAPI"
-import {addNewQuiz} from "../actions"
+import {fetchQuiz} from "../utils/FlashCardsAPI"
+import {getQuiz} from '../actions/index'
 
 function AddQuestionBtn ({ onPress }) {
   return (
@@ -64,6 +64,26 @@ const styles = StyleSheet.create({
 
 class QuizDetails extends Component{
 
+  state= {
+    loading: false
+  }
+
+  componentDidMount(){
+    this.loadQuiz()
+  }
+
+  loadQuiz = () => {
+    this.setState({ loading: true })
+
+    const { dispatch } = this.props
+
+    fetchQuiz(this.props.navigation.state.params.quiz.key)
+      .then((quiz) => {
+        dispatch(getQuiz(quiz))
+        this.setState({ loading: false })
+      })
+  }
+
   addQuestion = () => {
 
   }
@@ -83,11 +103,10 @@ class QuizDetails extends Component{
   }
 }
 
-function mapStateToProps (state, { navigation }){
-  const { quiz } = navigation.state.params
+function mapStateToProps (state){
 
   return{
-    quiz
+    quiz: state.quiz
   }
 
 }
