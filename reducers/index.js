@@ -17,6 +17,8 @@ const initialState = {
 function quizzes (state=initialState, action){
   const { quizzes } = action
   const { quiz } = action
+  const { key } = action
+  const { question } = action
 
   switch(action.type){
     case ADD_QUIZ:
@@ -36,8 +38,12 @@ function quizzes (state=initialState, action){
         quiz: quiz
       }
     case ADD_QUESTION:
+      console.log(state.quizzes)
+      console.log(key)
+      console.log(question)
       return{
         ...state,
+        quizzes: state[key].questions.concat(question)
       }
     default:
       return{

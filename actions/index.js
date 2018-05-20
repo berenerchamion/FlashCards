@@ -31,9 +31,10 @@ export function addNewQuiz (quiz){
   }
 }
 
-export const addNewQuestionToQuiz = (postData, cb) => {
-  return dispatch => {
-    addQuestionToQuiz(postData).then(() => cb())
-    dispatch({ type: ADD_QUESTION, postData})
+export const addQuestion = (key, postData) => {
+  return {
+    type: ADD_QUESTION,
+    key: key,
+    question: postData,
   }
 }

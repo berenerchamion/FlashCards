@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native'
 
-export const FLASHCARDS_STORAGE_KEY = 'HOBFlashCards:quizzesv9'
+export const FLASHCARDS_STORAGE_KEY = 'HOBFlashCards:quizzesv1'
 
 export const fetchQuizzes = () => {
   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
@@ -19,8 +19,15 @@ export function addQuiz(id, title) {
   }))
 }
 
-export const addQuestionToQuiz = (postData) => {
-  return null
+export const addQuestionToQuiz = (key, postData) => {
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then(results => {
+      const quizzes = JSON.parse(results)
+      if(quizzes[key] !== undefined){
+        quizzes[key].questions.push(postData)
+        AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(quizzes))
+      }
+    })
 }
 
 /**

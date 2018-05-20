@@ -10,6 +10,8 @@ import {
   TextInput,
 } from 'react-native'
 import {orange, tan} from "../utils/colors"
+import {addQuestionToQuiz} from '../utils/FlashCardsAPI'
+import {addQuestion} from "../actions"
 
 const styles = StyleSheet.create({
   container: {
@@ -78,9 +80,10 @@ class AddQuestion extends Component {
   }
 
   submit = () => {
-    const { question } = this.state
-    const { answer } = this.state
 
+    this.props.dispatch(addQuestion(this.props.quiz.key, this.state))
+
+    addQuestionToQuiz(this.props.quiz.key, this.state)
 
     this.setState(() => ({
       question: null,
@@ -96,9 +99,9 @@ class AddQuestion extends Component {
 
     return(
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-        <Text style={styles.item}>Add a question and answer and click save...</Text>
+        <Text style={styles.item}>Add a question and answer...</Text>
         <TextInput
-          style={[styles.textInput, {height: 40}]}
+          style={[styles.textInput, {height: 40, marginBottom: 15}]}
           autoCapitalize="sentences"
           underlineColorAndroid={orange}
           maxLength={50}
@@ -107,7 +110,7 @@ class AddQuestion extends Component {
           onChangeText={(question)=> this.setState({question})}
         />
         <TextInput
-          style={[styles.textInput, {height: 40}]}
+          style={[styles.textInput, {height: 40, marginBottom: 15}]}
           autoCapitalize="sentences"
           underlineColorAndroid={orange}
           maxLength={50}
@@ -115,7 +118,7 @@ class AddQuestion extends Component {
           value={answer}
           onChangeText={(answer)=> this.setState({answer})}
         />
-        <SubmitBtn onPress={this.submit} />
+        <SubmitBtn onPress={() => { this.submit() }} />
         <View style={{height: 100}} />
       </KeyboardAvoidingView>
     )

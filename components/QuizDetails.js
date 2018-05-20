@@ -89,9 +89,7 @@ class QuizDetails extends Component{
   }
 
   addQuestion = (quiz) => {
-
-    console.log('Do I have a quiz: ' + quiz.title)
-    this.props.navigation.navigate('AddQuestion',{quiz: quiz})
+    this.props.navigation.navigate('AddQuestion', {quiz: quiz})
   }
 
   takeQuiz = () => {

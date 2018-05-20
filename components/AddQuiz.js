@@ -97,7 +97,7 @@ class AddQuiz extends Component{
       questions: [],
     }))
 
-    addQuiz(id, title)
+    addQuiz(key, title)
 
     this.setState(() => ({
       id: null,
