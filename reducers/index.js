@@ -26,7 +26,6 @@ function quizzes (state=initialState, action){
         ...state,
         quizzes: state.quizzes.concat(quiz)
       }
-        quizzes.concat(quiz)
     case FETCH_QUIZZES:
         return{
           ...state,
@@ -37,14 +36,18 @@ function quizzes (state=initialState, action){
         ...state,
         quiz: quiz
       }
-    case ADD_QUESTION:
-      console.log(state.quizzes)
-      console.log(key)
-      console.log(question)
+    case ADD_QUESTION: {
+      var q = state.quiz
+      var qs = q.questions.slice()
+      qs.push(question)
+      q.questions = qs
       return{
         ...state,
-        quizzes: state[key].questions.concat(question)
+        quiz: q
       }
+
+    }
+
     default:
       return{
         ...state

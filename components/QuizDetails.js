@@ -6,8 +6,11 @@ import {
   StyleSheet,
   Platform,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native'
 import {orange, tan} from "../utils/colors"
+import { fetchQuiz } from '../utils/FlashCardsAPI'
+import { getQuiz } from '../actions'
 
 function AddQuestionBtn ({ onPress }) {
   return (
@@ -33,7 +36,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    paddingTop: 22
+    paddingTop: 22,
+    justifyContent: 'flex-start',
   },
   quizItem: {
     flex: 1,
@@ -85,7 +89,7 @@ class QuizDetails extends Component{
   }
 
   componentDidMount(){
-
+    this.loadQuiz()
   }
 
   addQuestion = (quiz) => {
@@ -96,15 +100,29 @@ class QuizDetails extends Component{
     console.log('Quiz time!')
   }
 
-  render(){
+  loadQuiz = () => {
+    this.setState({
+      loading: true
+    })
 
+    fetchQuiz(this.props.navigation.state.params.quiz.key).then((quiz) => {
+      this.props.dispatch(getQuiz(quiz))
+
+      this.setState({
+        loading: false
+      })
+    })
+  }
+
+  render(){
     const { quiz } = this.props
 
     return(
       <View style={styles.container}>
+        <ActivityIndicator animating={this.state.loading} color={orange} />
         <Text style={styles.quizItem}>{quiz.title}</Text>
         <Text style={styles.quizItem}>quizId is {quiz.key}</Text>
-        <Text style={styles.quizItem}># of questions: {quiz.questions.length}</Text>
+        <Text style={styles.quizItem}># of questions: {quiz.questions.length} </Text>
         <AddQuestionBtn onPress={() => { this.addQuestion(quiz)
         }} />
         <TakeQuizBtn onPress={this.takeQuiz} />
@@ -113,11 +131,9 @@ class QuizDetails extends Component{
   }
 }
 
-function mapStateToProps (state, { navigation }){
-  const { quiz } = navigation.state.params
-
+function mapStateToProps (state){
   return{
-    quiz
+    quiz: state.quiz
   }
 
 }

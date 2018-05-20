@@ -31,10 +31,9 @@ export function addNewQuiz (quiz){
   }
 }
 
-export const addQuestion = (key, postData) => {
+export const addQuestion = (postData) => {
   return {
     type: ADD_QUESTION,
-    key: key,
     question: postData,
   }
 }

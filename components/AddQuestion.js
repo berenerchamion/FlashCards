@@ -12,6 +12,7 @@ import {
 import {orange, tan} from "../utils/colors"
 import {addQuestionToQuiz} from '../utils/FlashCardsAPI'
 import {addQuestion} from "../actions"
+import {NavigationActions} from "react-navigation"
 
 const styles = StyleSheet.create({
   container: {
@@ -81,7 +82,7 @@ class AddQuestion extends Component {
 
   submit = () => {
 
-    this.props.dispatch(addQuestion(this.props.quiz.key, this.state))
+    this.props.dispatch(addQuestion(this.state))
 
     addQuestionToQuiz(this.props.quiz.key, this.state)
 
@@ -90,6 +91,13 @@ class AddQuestion extends Component {
       answer: null,
     }))
 
+    this.toQuiz()
+
+  }
+
+  toQuiz = () => {
+    console.log('hey...')
+    this.props.navigation.dispatch(NavigationActions.back({key: 'AddQuestion'}))
   }
 
   render(){
@@ -99,7 +107,7 @@ class AddQuestion extends Component {
 
     return(
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-        <Text style={styles.item}>Add a question and answer...</Text>
+        <Text style={styles.item}>Add some questions and answers. When you are done, hit the back arrow back.</Text>
         <TextInput
           style={[styles.textInput, {height: 40, marginBottom: 15}]}
           autoCapitalize="sentences"

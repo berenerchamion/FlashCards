@@ -9,8 +9,12 @@ export const fetchQuizzes = () => {
     })
 }
 
-export const fetchQuiz = (id) => {
-  return null
+export const fetchQuiz = (key) => {
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then(results => {
+      quizzes = JSON.parse(results)
+      return quizzes[key]
+    })
 }
 
 export function addQuiz(id, title) {

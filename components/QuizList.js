@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
 
 class QuizList extends Component {
   state = {
-    qs: [],
     ready: false,
   }
 
