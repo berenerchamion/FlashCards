@@ -25,6 +25,7 @@ class QuizList extends Component {
   }
 
   componentDidMount(){
+    console.log('QuizList is mounting!')
     const { dispatch } = this.props
     fetchQuizzes().then(quizzes => dispatch(fetchAllQuizzes(quizzes)))
   }

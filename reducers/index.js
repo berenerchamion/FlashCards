@@ -45,7 +45,6 @@ function quizzes (state=initialState, action){
         ...state,
         quiz: q
       }
-
     }
 
     default:

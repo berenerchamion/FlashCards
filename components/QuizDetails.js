@@ -89,6 +89,7 @@ class QuizDetails extends Component{
   }
 
   componentDidMount(){
+    console.log("Mounting...")
     this.loadQuiz()
   }
 

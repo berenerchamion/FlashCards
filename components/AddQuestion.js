@@ -90,14 +90,8 @@ class AddQuestion extends Component {
       question: null,
       answer: null,
     }))
-
-    this.toQuiz()
-
-  }
-
-  toQuiz = () => {
-    console.log('hey...')
-    this.props.navigation.dispatch(NavigationActions.back({key: 'AddQuestion'}))
+    //Yeah this is not having the effect I Would like.
+    this.props.navigation.navigate('QuizDetails', {quiz: this.props.quiz})
   }
 
   render(){
@@ -133,13 +127,10 @@ class AddQuestion extends Component {
   }
 }
 
-function mapStateToProps (state, { navigation }){
-  const { quiz } = navigation.state.params
-
+function mapStateToProps (state, ){
   return{
-    quiz
+    quiz: state.quiz
   }
-
 }
 
 export default connect (mapStateToProps) (AddQuestion)
