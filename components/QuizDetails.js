@@ -89,12 +89,11 @@ class QuizDetails extends Component{
   }
 
   componentDidMount(){
-    console.log("Mounting...")
     this.loadQuiz()
   }
 
   addQuestion = (quiz) => {
-    this.props.navigation.navigate('AddQuestion', {quiz: quiz})
+    this.props.navigation.navigate('AddQuestion', {quiz: quiz, reloadQuiz: this.loadQuiz})
   }
 
   takeQuiz = () => {
@@ -102,12 +101,14 @@ class QuizDetails extends Component{
   }
 
   loadQuiz = () => {
+    console.log('In loader...')
     this.setState({
       loading: true
     })
 
     fetchQuiz(this.props.navigation.state.params.quiz.key).then((quiz) => {
       this.props.dispatch(getQuiz(quiz))
+      console.log(quiz.questions.length)
 
       this.setState({
         loading: false

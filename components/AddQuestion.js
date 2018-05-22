@@ -12,7 +12,6 @@ import {
 import {orange, tan} from "../utils/colors"
 import {addQuestionToQuiz} from '../utils/FlashCardsAPI'
 import {addQuestion} from "../actions"
-import {NavigationActions} from "react-navigation"
 
 const styles = StyleSheet.create({
   container: {
@@ -91,7 +90,10 @@ class AddQuestion extends Component {
       answer: null,
     }))
     //Yeah this is not having the effect I Would like.
-    this.props.navigation.navigate('QuizDetails', {quiz: this.props.quiz})
+    //this.props.navigation.navigate('QuizDetails', {quiz: this.props.quiz})
+    //this better, but render on the screen you go back to does not get fired.
+    this.props.navigation.state.params.reloadQuiz()
+    this.props.navigation.goBack()
   }
 
   render(){

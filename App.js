@@ -95,7 +95,7 @@ export default class App extends React.Component {
     return (
       <Provider store={
         createStore(reducer,
-          devToolsEnhancer()
+          devToolsEnhancer({suppressConnectErrors: false,})
           )
       }>
         <View style={ {flex: 1} }>

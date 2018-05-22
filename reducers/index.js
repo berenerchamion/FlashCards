@@ -39,8 +39,10 @@ function quizzes (state=initialState, action){
     case ADD_QUESTION: {
       var q = state.quiz
       var qs = q.questions.slice()
+      console.log(qs.length)
       qs.push(question)
       q.questions = qs
+      console.log(q.questions.length)
       return{
         ...state,
         quiz: q

@@ -21,11 +21,10 @@ const styles = StyleSheet.create({
 
 class QuizList extends Component {
   state = {
-    ready: false,
+    refreshing: false,
   }
 
   componentDidMount(){
-    console.log('QuizList is mounting!')
     const { dispatch } = this.props
     fetchQuizzes().then(quizzes => dispatch(fetchAllQuizzes(quizzes)))
   }
@@ -40,6 +39,18 @@ class QuizList extends Component {
     </TouchableOpacity>
   }
 
+  reloadQuizzes = () => {
+    console.log('refreshing the main quiz list')
+    this.setState({
+      refreshing: true
+    },
+      () => {
+        const { dispatch } = this.props
+        fetchQuizzes().then(quizzes => dispatch(fetchAllQuizzes(quizzes)))
+        this.setState({ refreshing: false})
+      })
+  }
+
   render(){
     const { quizzes } = this.props
     return (
@@ -47,6 +58,9 @@ class QuizList extends Component {
         {((quizzes !== null || typeof(quizzes) !== undefined) && quizzes.length > 0)
          ?<FlatList
             data={quizzes}
+            extraData={this.props}
+            refreshing={this.state.refreshing}
+            onRefresh={this.reloadQuizzes}
             renderItem={this.renderItem}
           />
         : <View style={styles.container}>
