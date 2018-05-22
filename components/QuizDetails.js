@@ -101,7 +101,7 @@ class QuizDetails extends Component{
   }
 
   loadQuiz = () => {
-    console.log('In loader...')
+    console.log('In QuizDetails loader...')
     this.setState({
       loading: true
     })
@@ -134,6 +134,7 @@ class QuizDetails extends Component{
 }
 
 function mapStateToProps (state){
+  console.log(state.quiz)
   return{
     quiz: state.quiz
   }
