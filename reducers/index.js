@@ -34,7 +34,7 @@ function quizzes (state=initialState, action){
     case FETCH_QUIZ:
       return {
         ...state,
-        quiz: quiz
+        quiz: state.quizzes.filter( x => x.key === quiz.key)[0]
       }
     case ADD_QUESTION: {
       //quiz to be updated - get a copy from state
@@ -57,7 +57,6 @@ function quizzes (state=initialState, action){
       console.log(q.questions.length)
       return{
         ...state,
-        quiz: q,
         quizzes: updatedql,
       }
     }

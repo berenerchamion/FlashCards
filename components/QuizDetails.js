@@ -108,7 +108,6 @@ class QuizDetails extends Component{
 
     fetchQuiz(this.props.navigation.state.params.quiz.key).then((quiz) => {
       this.props.dispatch(getQuiz(quiz))
-      console.log(quiz.questions.length)
 
       this.setState({
         loading: false
@@ -118,6 +117,7 @@ class QuizDetails extends Component{
 
   render(){
     const { quiz } = this.props
+    console.log(quiz)
 
     return(
       <View style={styles.container}>
@@ -134,7 +134,6 @@ class QuizDetails extends Component{
 }
 
 function mapStateToProps (state){
-  console.log(state.quiz)
   return{
     quiz: state.quiz
   }
