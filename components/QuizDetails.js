@@ -101,7 +101,6 @@ class QuizDetails extends Component{
   }
 
   loadQuiz = () => {
-    console.log('In QuizDetails loader...')
     this.setState({
       loading: true
     })
@@ -117,7 +116,6 @@ class QuizDetails extends Component{
 
   render(){
     const { quiz } = this.props
-    console.log(quiz)
 
     return(
       <View style={styles.container}>

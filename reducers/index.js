@@ -46,7 +46,6 @@ function quizzes (state=initialState, action){
       //add the new question to the question list on the quiz object
       qs.push(question)
       //assign the new question list to the quiz object
-      console.log(q.questions.length)
       q.questions.push(question)
       var updatedql = ql.map(x => {
         if (x.key === q.key) {
