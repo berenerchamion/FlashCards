@@ -3,11 +3,30 @@ import { connect } from 'react-redux'
 import {
   View,
   Text,
-  StyleSheet,
   Platform,
   TouchableOpacity,
 } from 'react-native'
 import { styles } from '../utils/styles'
+
+function CorrectBtn ({ onPress }) {
+  return (
+    <TouchableOpacity
+      style={Platform.OS === 'ios' ? styles.iosAddQuestionBtn : styles.androidAddQuestionBtn}
+      onPress={onPress}>
+      <Text style={styles.addQuestionBtnText}>GOT IT</Text>
+    </TouchableOpacity>
+  )
+}
+
+function IncorrectBtn ({ onPress }) {
+  return (
+    <TouchableOpacity
+      style={Platform.OS === 'ios' ? styles.iosAddQuestionBtn : styles.androidAddQuestionBtn}
+      onPress={onPress}>
+      <Text style={styles.addQuestionBtnText}>OOOPS</Text>
+    </TouchableOpacity>
+  )
+}
 
 class TakeQuiz extends Component {
 
@@ -26,7 +45,7 @@ class TakeQuiz extends Component {
   }
 
   render(){
-    const {quiz} = this.props
+    const { quiz } = this.props
     const {questionIndex, correctCount, takeQuizNotificaiton} = this.state
     return(
       <View style={styles.container}>
@@ -34,7 +53,6 @@ class TakeQuiz extends Component {
       </View>
     )
   }
-
 
 }
 
@@ -44,4 +62,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(TakeQuiz)
+export default connect(mapStateToProps, )(TakeQuiz)

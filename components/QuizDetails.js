@@ -3,12 +3,11 @@ import { connect } from 'react-redux'
 import {
   View,
   Text,
-  StyleSheet,
   Platform,
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native'
-import {orange, tan} from "../utils/colors"
+import {orange, tan} from '../utils/colors'
 import { fetchQuiz } from '../utils/FlashCardsAPI'
 import { getQuiz } from '../actions'
 import { styles } from '../utils/styles'
@@ -55,8 +54,8 @@ class QuizDetails extends Component{
     this.props.navigation.navigate('AddQuestion', {quiz: quiz, reloadQuiz: this.loadQuiz})
   }
 
-  takeQuiz = () => {
-    console.log('Quiz time!')
+  takeQuiz = (quiz) => {
+    this.props.navigation.navigate('TakeQuiz', {quiz: quiz})
   }
 
   loadQuiz = () => {
@@ -84,7 +83,8 @@ class QuizDetails extends Component{
         <Text style={styles.quizItem}># of questions: {quiz.questions.length} </Text>
         <AddQuestionBtn onPress={() => { this.addQuestion(quiz)
         }} />
-        <TakeQuizBtn onPress={this.takeQuiz} />
+        <TakeQuizBtn onPress={() => { this.takeQuiz(quiz)
+        }} />
       </View>
     )
   }
