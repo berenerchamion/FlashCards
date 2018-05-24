@@ -11,13 +11,7 @@ import {
 import QuizListItem from './QuizListItem'
 import { fetchAllQuizzes } from "../actions"
 import { fetchQuizzes } from "../utils/FlashCardsAPI"
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 22
-  },
-})
+import { styles } from '../utils/styles'
 
 class QuizList extends Component {
   state = {

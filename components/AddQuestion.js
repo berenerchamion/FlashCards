@@ -12,47 +12,7 @@ import {
 import {orange, tan} from "../utils/colors"
 import {addQuestionToQuiz} from '../utils/FlashCardsAPI'
 import {addQuestion} from "../actions"
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    paddingTop: 22
-  },
-  item: {
-    flex: 1,
-    padding: 5,
-    fontSize: 22,
-    height: 40,
-  },
-  submitBtnText: {
-    color: tan,
-    fontSize: 22,
-    textAlign: 'center',
-  },
-  textInput: {
-    fontSize: 22,
-  },
-  iosSubmitBtn: {
-    backgroundColor: orange,
-    padding: 10,
-    borderRadius: 7,
-    height: 45,
-    marginLeft: 40,
-    marginRight: 40,
-  },
-  androidSubmitBtn: {
-    backgroundColor: orange,
-    padding: 10,
-    paddingLeft: 30,
-    paddingRight: 30,
-    height: 45,
-    borderRadius: 2,
-    alignSelf: 'flex-end',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})
+import { styles } from '../utils/styles'
 
 function SubmitBtn ({ onPress }) {
   return (

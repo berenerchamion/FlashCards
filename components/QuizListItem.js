@@ -3,18 +3,10 @@ import {
   Text,
   StyleSheet,
 } from 'react-native'
-
-const styles = StyleSheet.create({
-    item: {
-      flex: 1,
-      padding: 5,
-      fontSize: 22,
-      height: 60,
-    },
-})
+import { styles } from '../utils/styles'
 
 export default function QuizListItem ({ title, questions}) {
   return (
-    <Text style={styles.item}>{title} - #Questions: {questions.length}</Text>
+    <Text style={styles.quizItem}>{title} - #Questions: {questions.length}</Text>
   )
 }
