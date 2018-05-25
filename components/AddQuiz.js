@@ -74,20 +74,23 @@ class AddQuiz extends Component{
   render(){
     const { title } = this.state
     return(
-      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
+      <View style={styles.container}>
         <Text style={styles.item}>Create a quiz by entering a name and submitting it. Then you can add questions to it.</Text>
-        <TextInput
-          style={[styles.textInput, {height: 40}]}
-          autoCapitalize="words"
-          underlineColorAndroid={orange}
-          maxLength={50}
-          placeholder="Give your quiz a name..."
-          value={title}
-          onChangeText={(title)=> this.setState({title})}
-        />
-        <SubmitBtn onPress={this.submit} />
-        <View style={{height: 100}} />
-      </KeyboardAvoidingView>
+        <KeyboardAvoidingView style={{flex: 2}} behavior="padding" enabled>
+          <TextInput
+            style={[styles.textInput, {height: 40}]}
+            autoCapitalize="words"
+            underlineColorAndroid={orange}
+            maxLength={50}
+            placeholder="Give your quiz a name..."
+            value={title}
+            onChangeText={(title)=> this.setState({title})}
+          />
+          <SubmitBtn onPress={this.submit} />
+          <View style={{height: 100}} />
+        </KeyboardAvoidingView>
+      </View>
+
     )
   }
 }
