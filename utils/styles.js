@@ -5,15 +5,16 @@ import {StyleSheet} from "react-native"
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
     paddingTop: 22,
-    justifyContent: 'flex-start',
   },
   quizItem: {
     flex: 1,
     padding: 5,
     fontSize: 22,
     height: 40,
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    justifyContent: 'flex-start',
   },
   addQuestionBtnText: {
     color: tan,
@@ -23,7 +24,7 @@ export const styles = StyleSheet.create({
   textInput: {
     fontSize: 22,
   },
-  iosAddQuestionBtn: {
+  iosBtn: {
     backgroundColor: orange,
     padding: 10,
     borderRadius: 7,
@@ -31,7 +32,7 @@ export const styles = StyleSheet.create({
     marginLeft: 40,
     marginRight: 40,
   },
-  androidAddQuestionBtn: {
+  androidBtn: {
     backgroundColor: orange,
     padding: 10,
     paddingLeft: 30,
@@ -42,4 +43,34 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  item: {
+    flex: 1,
+    padding: 5,
+    fontSize: 22,
+    height: 40,
+    alignItems: 'center',
+  },
+  submitBtnText: {
+    color: tan,
+    fontSize: 22,
+    textAlign: 'center',
+  },
+  txtLabel: {
+    fontSize: 22,
+    padding: 5,
+  },
+  txtHeader: {
+    fontSize: 24,
+    padding: 10,
+  },
+  quizHeader: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
+  buttonBlock: {
+    flex: 2,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+
 })

@@ -18,7 +18,7 @@ import { styles } from '../utils/styles'
 function SubmitBtn ({ onPress }) {
   return (
     <TouchableOpacity
-      style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.androidSubmitBtn}
+      style={Platform.OS === 'ios' ? styles.iosBtn : styles.androidBtn}
       onPress={onPress}>
       <Text style={styles.submitBtnText}>SUBMIT</Text>
     </TouchableOpacity>

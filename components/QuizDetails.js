@@ -15,7 +15,7 @@ import { styles } from '../utils/styles'
 function AddQuestionBtn ({ onPress }) {
   return (
     <TouchableOpacity
-      style={Platform.OS === 'ios' ? styles.iosAddQuestionBtn : styles.androidAddQuestionBtn}
+      style={Platform.OS === 'ios' ? styles.iosBtn : styles.androidBtn}
       onPress={onPress}>
       <Text style={styles.addQuestionBtnText}>ADD QUESTION</Text>
     </TouchableOpacity>
@@ -25,7 +25,7 @@ function AddQuestionBtn ({ onPress }) {
 function TakeQuizBtn ({ onPress }) {
   return (
     <TouchableOpacity
-      style={Platform.OS === 'ios' ? styles.iosAddQuestionBtn : styles.androidAddQuestionBtn}
+      style={Platform.OS === 'ios' ? styles.iosBtn : styles.androidBtn}
       onPress={onPress}>
       <Text style={styles.addQuestionBtnText}>TAKE QUIZ</Text>
     </TouchableOpacity>
@@ -78,13 +78,17 @@ class QuizDetails extends Component{
     return(
       <View style={styles.container}>
         <ActivityIndicator animating={this.state.loading} color={orange} />
-        <Text style={styles.quizItem}>{quiz.title}</Text>
-        <Text style={styles.quizItem}>quizId is {quiz.key}</Text>
-        <Text style={styles.quizItem}># of questions: {quiz.questions.length} </Text>
-        <AddQuestionBtn onPress={() => { this.addQuestion(quiz)
-        }} />
-        <TakeQuizBtn onPress={() => { this.takeQuiz(quiz)
-        }} />
+        <View style={styles.quizHeader}>
+          <Text style={styles.item}>{quiz.title}</Text>
+          <Text style={styles.item}># of questions: {quiz.questions.length} </Text>
+        </View>
+        <View style={styles.buttonBlock}>
+          <AddQuestionBtn onPress={() => { this.addQuestion(quiz)
+          }} />
+          {quiz.questions.length> 0 &&
+          <TakeQuizBtn onPress={() => { this.takeQuiz(quiz)
+          }} />}
+        </View>
       </View>
     )
   }
@@ -94,7 +98,6 @@ function mapStateToProps (state){
   return{
     quiz: state.quiz
   }
-
 }
 
 export default connect (mapStateToProps, ) (QuizDetails)

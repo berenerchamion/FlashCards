@@ -6,12 +6,14 @@ import {
   StyleSheet,
   Platform,
   TouchableOpacity,
+  ActivityIndicator,
   FlatList,
 } from 'react-native'
 import QuizListItem from './QuizListItem'
 import { fetchAllQuizzes } from "../actions"
 import { fetchQuizzes } from "../utils/FlashCardsAPI"
 import { styles } from '../utils/styles'
+import {orange} from "../utils/colors"
 
 class QuizList extends Component {
   state = {
@@ -20,7 +22,15 @@ class QuizList extends Component {
 
   componentDidMount(){
     const { dispatch } = this.props
+
+    this.setState({
+      refreshing: true
+    })
     fetchQuizzes().then(quizzes => dispatch(fetchAllQuizzes(quizzes)))
+
+    this.setState({
+      refreshing: false
+    })
   }
 
   renderItem = ({ item }) => {
@@ -49,6 +59,7 @@ class QuizList extends Component {
     const { quizzes } = this.props
     return (
       <View style={styles.container}>
+        <ActivityIndicator animating={this.state.refreshing} color={orange} />
         {((quizzes !== null || typeof(quizzes) !== undefined) && quizzes.length > 0)
          ?<FlatList
             data={quizzes}
@@ -58,7 +69,7 @@ class QuizList extends Component {
             renderItem={this.renderItem}
           />
         : <View style={styles.container}>
-            <Text>Yeah you need to add a quiz...</Text>
+            <Text style={styles.item}>Yeah you need to add a quiz...</Text>
           </View> }
       </View>
 
