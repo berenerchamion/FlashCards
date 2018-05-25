@@ -44,7 +44,6 @@ class QuizList extends Component {
   }
 
   reloadQuizzes = () => {
-    console.log('refreshing the main quiz list')
     this.setState({
       refreshing: true
     },

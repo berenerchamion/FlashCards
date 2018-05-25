@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { styles } from '../utils/styles'
+import { setLocalNotification, clearLocalNotification } from "../utils/helpers"
 
 function CorrectBtn ({ onPress }) {
   return (
@@ -42,7 +43,6 @@ class TakeQuiz extends Component {
     questionIndex: 0,
     correctCount: 0,
     numberOfQuestionsAnswered: 0,
-    takeQuizNotification: false,
     showAnswer: false,
   }
 
@@ -77,14 +77,19 @@ class TakeQuiz extends Component {
     const {
       questionIndex,
       correctCount,
-      takeQuizNotificaiton,
       numberOfQuestionsAnswered,
       showAnswer
     } = this.state
 
     var totalNumQuestions = quiz.questions.length
 
-    //Visually the array needs to show 0 as 1 so don't forget that.
+    //reset the notification if the quiz was completed
+    if (questionIndex === quiz.questions.length)
+    {
+      clearLocalNotification()
+      setLocalNotification()
+    }
+
 
     return(
 

@@ -1,11 +1,7 @@
 import React from 'react'
 import {
-  View,
-  StyleSheet,
   AsyncStorage,
 } from 'react-native'
-import { FontAwesome, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
-import { white, pink, purple, red, orange, blue } from './colors'
 import { Notifications, Permissions } from 'expo'
 
 const NOTIFICATION_KEY = 'HOBFlashCards:notifications'

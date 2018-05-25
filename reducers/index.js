@@ -53,7 +53,6 @@ function quizzes (state=initialState, action){
         }
         return x
       })
-      console.log(q.questions.length)
       return{
         ...state,
         quizzes: updatedql,
