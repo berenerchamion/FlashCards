@@ -31,12 +31,17 @@ export const styles = StyleSheet.create({
     height: 45,
     marginLeft: 40,
     marginRight: 40,
+    marginBottom: 10,
   },
   androidBtn: {
     backgroundColor: orange,
     padding: 10,
     paddingLeft: 30,
     paddingRight: 30,
+    paddingBottom: 15,
+    marginBottom: 10,
+    marginRight: 2,
+    marginLeft: 2,
     height: 45,
     borderRadius: 2,
     alignSelf: 'flex-end',
@@ -72,5 +77,10 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
+  card: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 
 })
