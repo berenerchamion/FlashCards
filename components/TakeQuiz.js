@@ -5,6 +5,8 @@ import {
   Text,
   Platform,
   TouchableOpacity,
+  Animated,
+  Easing,
 } from 'react-native'
 import { styles } from '../utils/styles'
 import { setLocalNotification, clearLocalNotification } from "../utils/helpers"
@@ -63,13 +65,12 @@ class TakeQuiz extends Component {
   }
 
   markCorrect = () => {
-    this.setState({
-      questionIndex: this.state.questionIndex + 1,
-      correctCount: this.state.correctCount + 1,
-      showAnswer: ! this.state.showAnswer,
-      numberOfQuestionsAnswered: this.state.numberOfQuestionsAnswered + 1,
-    })
-
+        this.setState({
+          questionIndex: this.state.questionIndex + 1,
+          correctCount: this.state.correctCount + 1,
+          showAnswer: ! this.state.showAnswer,
+          numberOfQuestionsAnswered: this.state.numberOfQuestionsAnswered + 1,
+        })
   }
 
   render(){
@@ -78,7 +79,7 @@ class TakeQuiz extends Component {
       questionIndex,
       correctCount,
       numberOfQuestionsAnswered,
-      showAnswer
+      showAnswer,
     } = this.state
 
     var totalNumQuestions = quiz.questions.length
@@ -89,7 +90,6 @@ class TakeQuiz extends Component {
       clearLocalNotification()
       setLocalNotification()
     }
-
 
     return(
 
