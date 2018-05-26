@@ -26,14 +26,11 @@ class QuizList extends Component {
     this.setState({
       refreshing: true
     })
-    console.log('Fetching...')
     fetchQuizzes().then((quizzes) => {
       if (quizzes){
         dispatch(fetchAllQuizzes(quizzes))
       }
     })
-    console.log('Fetched...')
-
     this.setState({
       refreshing: false
     })

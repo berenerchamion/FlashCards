@@ -16,11 +16,6 @@ export const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     justifyContent: 'flex-start',
   },
-  quizItem: {
-    flex: 1,
-    padding: 5,
-    fontSize: 14,
-  },
   addQuestionBtnText: {
     color: tan,
     fontSize: 22,

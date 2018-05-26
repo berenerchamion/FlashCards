@@ -6,7 +6,6 @@ import {
   Platform,
   TouchableOpacity,
   Animated,
-  Easing,
 } from 'react-native'
 import { styles } from '../utils/styles'
 import { setLocalNotification, clearLocalNotification } from "../utils/helpers"
@@ -46,7 +45,6 @@ class TakeQuiz extends Component {
     correctCount: 0,
     numberOfQuestionsAnswered: 0,
     showAnswer: false,
-    fadeIn: new Animated.Value(0),
   }
 
   toggleCard = () => {
@@ -89,7 +87,6 @@ class TakeQuiz extends Component {
       correctCount,
       numberOfQuestionsAnswered,
       showAnswer,
-      fadeIn,
     } = this.state
 
     var totalNumQuestions = quiz.questions.length
@@ -175,7 +172,6 @@ class TakeQuiz extends Component {
       </View>
     )
   }
-
 }
 
 function mapStateToProps(state) {
