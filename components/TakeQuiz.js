@@ -72,6 +72,16 @@ class TakeQuiz extends Component {
         })
   }
 
+  resetQuiz = () => {
+    this.setState({
+      questionIndex: 0,
+      correctCount: 0,
+      numberOfQuestionsAnswered: 0,
+      showAnswer: false,
+      fadeIn: new Animated.Value(0),
+    })
+  }
+
   render(){
     const { quiz } = this.props
     const {
@@ -99,13 +109,22 @@ class TakeQuiz extends Component {
           <View style={styles.quizHeader}>
             <Text style={styles.item}>Question {questionIndex} of {totalNumQuestions}</Text>
             <Text style={styles.item}>Final Score: {correctCount/totalNumQuestions*100}%</Text>
-            <TouchableOpacity
-              style={Platform.OS === 'ios' ? styles.iosBtn : styles.androidBtn}
-              onPress={()=>{
-                this.props.navigation.goBack()
-              }}>
-              <Text style={styles.submitBtnText}>Do-Over???</Text>
-            </TouchableOpacity>
+            <View style={styles.buttonBlock}>
+              <TouchableOpacity
+                style={Platform.OS === 'ios' ? styles.iosBtn : styles.androidBtn}
+                onPress={()=>{
+                  this.resetQuiz()
+                }}>
+                <Text style={styles.submitBtnText}>Do-Over???</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={Platform.OS === 'ios' ? styles.iosBtn : styles.androidBtn}
+                onPress={()=>{
+                  this.props.navigation.goBack()
+                }}>
+                <Text style={styles.submitBtnText}>Back to Deck???</Text>
+              </TouchableOpacity>
+            </View>
           </View>
           :
           <View style={styles.container}>

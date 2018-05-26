@@ -17,6 +17,7 @@ import { Constants } from 'expo'
 import { orange, tan } from './utils/colors'
 import reducer from './reducers'
 import devToolsEnhancer from 'remote-redux-devtools';
+import { FontAwesome, Ionicons } from '@expo/vector-icons'
 
 function FlashCardsStatusBar ({backgroundColor, ...props}){
   return(

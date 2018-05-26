@@ -16,6 +16,11 @@ export const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     justifyContent: 'flex-start',
   },
+  quizItem: {
+    flex: 1,
+    padding: 5,
+    fontSize: 14,
+  },
   addQuestionBtnText: {
     color: tan,
     fontSize: 22,
@@ -29,9 +34,11 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 7,
     height: 45,
-    marginLeft: 40,
-    marginRight: 40,
+    marginLeft: 30,
+    marginRight: 30,
     marginBottom: 10,
+    paddingLeft: 5,
+    paddingRight: 5,
   },
   androidBtn: {
     backgroundColor: orange,
@@ -87,5 +94,4 @@ export const styles = StyleSheet.create({
     borderColor: orange,
     borderWidth: 1,
   },
-
 })
