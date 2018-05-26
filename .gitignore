@@ -18,3 +18,4 @@ yarn-error.log*
 .sonar_lock
 class-mapping.csv
 .scannerwork
+sonar-project.properties
