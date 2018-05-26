@@ -7,7 +7,6 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   Platform,
-  Alert,
 } from 'react-native'
 import { addNewQuiz } from '../actions'
 import { uuidv4, addQuiz } from '../utils/FlashCardsAPI'
@@ -85,7 +84,7 @@ class AddQuiz extends Component{
             maxLength={50}
             placeholder="Give your quiz a name..."
             value={title}
-            onChangeText={(title)=> this.setState({title})}
+            onChangeText={ title=> this.setState({title}) }
           />
           <SubmitBtn onPress={this.submit} />
           <View style={{height: 100}} />

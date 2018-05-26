@@ -37,7 +37,7 @@ class QuizList extends Component {
   }
 
   renderItem = ({ item }) => {
-    var bumpSize = new Animated.Value(0)
+    let bumpSize = new Animated.Value(0)
 
     const fontSize = bumpSize.interpolate({
       inputRange: [0,0.5,.75],

@@ -3,13 +3,12 @@ import { connect } from 'react-redux'
 import {
   View,
   Text,
-  StyleSheet,
   Platform,
   TouchableOpacity,
   KeyboardAvoidingView,
   TextInput,
 } from 'react-native'
-import {orange, tan} from "../utils/colors"
+import {orange} from "../utils/colors"
 import {addQuestionToQuiz} from '../utils/FlashCardsAPI'
 import {addQuestion} from "../actions"
 import { styles } from '../utils/styles'
@@ -41,7 +40,7 @@ class AddQuestion extends Component {
 
   submit = () => {
 
-    if (this.state.question !== '' && this.state.question !== null && this.state.answer != '' && this.state.answer !== null){
+    if (this.state.question !== '' && this.state.question !== null && this.state.answer !== '' && this.state.answer !== null){
       this.props.dispatch(addQuestion(this.state))
 
       addQuestionToQuiz(this.props.quiz.key, this.state)

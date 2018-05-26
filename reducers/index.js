@@ -38,16 +38,16 @@ function quizzes (state=initialState, action){
       }
     case ADD_QUESTION: {
       //quiz to be updated - get a copy from state
-      var q = state.quiz
+      let q = state.quiz
       //get the questions array we want to add a question too
-      var qs = q.questions.slice()
+      let qs = q.questions.slice()
       //get the full quiz list from state
-      var ql = state.quizzes
+      let ql = state.quizzes
       //add the new question to the question list on the quiz object
       qs.push(question)
       //assign the new question list to the quiz object
       q.questions.push(question)
-      var updatedql = ql.map(x => {
+      let updatedql = ql.map(x => {
         if (x.key === q.key) {
           x.questions = qs
         }

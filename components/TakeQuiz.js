@@ -89,7 +89,7 @@ class TakeQuiz extends Component {
       showAnswer,
     } = this.state
 
-    var totalNumQuestions = quiz.questions.length
+    let totalNumQuestions = quiz.questions.length
 
     //reset the notification if the quiz was completed
     if (questionIndex === quiz.questions.length)
