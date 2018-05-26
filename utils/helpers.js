@@ -30,7 +30,7 @@ function createNotification(){
 export function setLocalNotification(){
   AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
-    .then((data) => {
+    .then(data => {
       if (data === null){
         Permissions.askAsync(Permissions.NOTIFICATIONS)
           .then(({ status }) => {

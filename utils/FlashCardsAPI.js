@@ -9,10 +9,10 @@ export const fetchQuizzes = () => {
     })
 }
 
-export const fetchQuiz = (key) => {
+export const fetchQuiz = key => {
   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
     .then(results => {
-      quizzes = JSON.parse(results)
+      let quizzes = JSON.parse(results)
       return quizzes[key]
     })
 }
@@ -41,7 +41,7 @@ export const addQuestionToQuiz = (key, postData) => {
 
 export function uuidv4() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    let r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
 }
