@@ -26,7 +26,13 @@ class QuizList extends Component {
     this.setState({
       refreshing: true
     })
-    fetchQuizzes().then(quizzes => dispatch(fetchAllQuizzes(quizzes)))
+    console.log('Fetching...')
+    fetchQuizzes().then((quizzes) => {
+      if (quizzes){
+        dispatch(fetchAllQuizzes(quizzes))
+      }
+    })
+    console.log('Fetched...')
 
     this.setState({
       refreshing: false
@@ -74,7 +80,7 @@ class QuizList extends Component {
     return (
       <View style={styles.container}>
         <ActivityIndicator animating={this.state.refreshing} color={orange} />
-        {((quizzes !== null || typeof(quizzes) !== undefined) && quizzes.length > 0)
+        {((quizzes !== null || quizzes !== undefined) && quizzes.length > 0)
          ?<FlatList
             data={quizzes}
             extraData={this.props}

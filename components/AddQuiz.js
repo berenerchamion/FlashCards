@@ -52,7 +52,6 @@ class AddQuiz extends Component{
     const key = id
 
     if (title !== '' && title !== null){
-      console.log(title)
       this.props.dispatch(addNewQuiz({
         key: key,
         title,
