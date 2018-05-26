@@ -41,19 +41,18 @@ class AddQuestion extends Component {
 
   submit = () => {
 
-    this.props.dispatch(addQuestion(this.state))
+    if (this.state.question !== '' && this.state.question !== null && this.state.answer != '' && this.state.answer !== null){
+      this.props.dispatch(addQuestion(this.state))
 
-    addQuestionToQuiz(this.props.quiz.key, this.state)
+      addQuestionToQuiz(this.props.quiz.key, this.state)
 
-    this.setState(() => ({
-      question: null,
-      answer: null,
-    }))
-    //Yeah this is not having the effect I Would like.
-    //this.props.navigation.navigate('QuizDetails', {quiz: this.props.quiz})
-    //this better, but render on the screen you go back to does not get fired.
-    this.props.navigation.state.params.reloadQuiz()
-    this.props.navigation.goBack()
+      this.setState(() => ({
+        question: null,
+        answer: null,
+      }))
+      this.props.navigation.state.params.reloadQuiz()
+      this.props.navigation.goBack()
+    }
   }
 
   render(){

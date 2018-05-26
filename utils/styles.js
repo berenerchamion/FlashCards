@@ -79,8 +79,13 @@ export const styles = StyleSheet.create({
   },
   card: {
     flex: 1,
+    marginLeft: 5,
+    marginRight: 5,
     justifyContent: 'center',
     alignItems: 'center',
-  }
+    borderRadius: 3,
+    borderColor: orange,
+    borderWidth: 1,
+  },
 
 })

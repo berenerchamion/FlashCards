@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native'
 
-export const FLASHCARDS_STORAGE_KEY = 'HOBFlashCards:quizzesv1'
+export const FLASHCARDS_STORAGE_KEY = 'HOBFlashCards:quizzesv2'
 
 export const fetchQuizzes = () => {
   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)

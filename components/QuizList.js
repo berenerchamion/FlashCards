@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import {
   View,
   Text,
-  StyleSheet,
-  Platform,
+  Animated,
+  Easing,
   TouchableOpacity,
   ActivityIndicator,
   FlatList,
@@ -34,12 +34,27 @@ class QuizList extends Component {
   }
 
   renderItem = ({ item }) => {
-    return <TouchableOpacity onPress = {() => this.props.navigation.navigate(
-      'QuizDetails',
-      {quiz: item}
-    )}
+    var bumpSize = new Animated.Value(0)
+
+    const fontSize = bumpSize.interpolate({
+      inputRange: [0,0.5,.75],
+      outputRange:[20,25,20],
+    })
+
+    return <TouchableOpacity onPress = {() =>{
+      Animated.timing(
+         bumpSize,
+        {
+          toValue: 1,
+          duration: 500,
+          easing: Easing.linear,
+        }).start(() => {
+          this.props.navigation.navigate('QuizDetails', {quiz: item})
+          bumpSize.setValue(0)
+      })
+    }}
     >
-      <QuizListItem { ...item } />
+      <QuizListItem { ...item } fontSize={fontSize}/>
     </TouchableOpacity>
   }
 

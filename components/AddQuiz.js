@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
   Platform,
+  Alert,
 } from 'react-native'
 import { addNewQuiz } from '../actions'
 import { uuidv4, addQuiz } from '../utils/FlashCardsAPI'
@@ -51,20 +51,22 @@ class AddQuiz extends Component{
     const { title } = this.state
     const key = id
 
-    this.props.dispatch(addNewQuiz({
-      key: key,
-      title,
-      questions: [],
-    }))
+    if (title !== '' && title !== null){
+      console.log(title)
+      this.props.dispatch(addNewQuiz({
+        key: key,
+        title,
+        questions: [],
+      }))
 
-    addQuiz(key, title)
+      addQuiz(key, title)
 
-    this.setState(() => ({
-      id: null,
-      title: null,
-    }))
-
-    this.toHome()
+      this.setState(() => ({
+        id: null,
+        title: null,
+      }))
+      this.toHome()
+    }
   }
 
   toHome = () => {

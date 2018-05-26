@@ -46,13 +46,12 @@ class TakeQuiz extends Component {
     correctCount: 0,
     numberOfQuestionsAnswered: 0,
     showAnswer: false,
+    fadeIn: new Animated.Value(0),
   }
 
-
-  //Function to tur the card back and forth like a flash card kinda thing
   toggleCard = () => {
     this.setState({
-      showAnswer: ! this.state.showAnswer
+      showAnswer: !this.state.showAnswer,
     })
   }
 
@@ -80,6 +79,7 @@ class TakeQuiz extends Component {
       correctCount,
       numberOfQuestionsAnswered,
       showAnswer,
+      fadeIn,
     } = this.state
 
     var totalNumQuestions = quiz.questions.length
@@ -104,7 +104,7 @@ class TakeQuiz extends Component {
               onPress={()=>{
                 this.props.navigation.goBack()
               }}>
-              <Text style={styles.submitBtnText}>Quiz List</Text>
+              <Text style={styles.submitBtnText}>Do-Over???</Text>
             </TouchableOpacity>
           </View>
           :
@@ -114,29 +114,32 @@ class TakeQuiz extends Component {
               <Text style={styles.item}>Tally: {correctCount} / {numberOfQuestionsAnswered}</Text>
             </View>
             {(showAnswer)
-              ?<View style={styles.card}>
-                <Text style={styles.item}>{quiz.questions[questionIndex].answer}</Text>
-                <View style={styles.buttonBlock}>
-                  <TouchableOpacity
-                    style={Platform.OS === 'ios' ? styles.iosBtn : styles.androidBtn}
-                    onPress={()=>{
-                      this.markCorrect()
-                    }}>
-                    <Text style={styles.submitBtnText}>Correct</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={Platform.OS === 'ios' ? styles.iosBtn : styles.androidBtn}
-                    onPress={()=>{
-                      this.markIncorrect()
-                    }}>
-                    <Text style={styles.submitBtnText}>Incorrect</Text>
-                  </TouchableOpacity>
-                </View>
+              ?<View style={styles.container}>
+                <Animated.View style={styles.card}>
+                  <Text style={styles.item}>{quiz.questions[questionIndex].answer}</Text>
+                </Animated.View>
+                  <View style={styles.buttonBlock}>
+                    <TouchableOpacity
+                      style={Platform.OS === 'ios' ? styles.iosBtn : styles.androidBtn}
+                      onPress={()=>{
+                        this.markCorrect()
+                      }}>
+                      <Text style={styles.submitBtnText}>Correct</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={Platform.OS === 'ios' ? styles.iosBtn : styles.androidBtn}
+                      onPress={()=>{
+                        this.markIncorrect()
+                      }}>
+                      <Text style={styles.submitBtnText}>Incorrect</Text>
+                    </TouchableOpacity>
+                  </View>
               </View>
-
-              :<View style={styles.card}>
-                <Text style={styles.item}>{quiz.questions[questionIndex].question}</Text>
-                <View>
+              :<View style={styles.container}>
+                <Animated.View style={styles.card}>
+                  <Text style={styles.item}>{quiz.questions[questionIndex].question}</Text>
+                </Animated.View>
+                <View style={styles.buttonBlock}>
                   <TouchableOpacity
                     style={Platform.OS === 'ios' ? styles.iosBtn : styles.androidBtn}
                     onPress={()=>{

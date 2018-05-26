@@ -1,12 +1,11 @@
 import React from 'react'
 import {
-  Text,
-  StyleSheet,
+  Animated,
 } from 'react-native'
 import { styles } from '../utils/styles'
 
-export default function QuizListItem ({ title, questions}) {
+export default function QuizListItem ({ title, questions, fontSize}) {
   return (
-    <Text style={styles.quizItem}>{title} - #Questions: {questions.length}</Text>
+    <Animated.Text style={[styles.quizItem, {fontSize: fontSize}]}>{title} - #Questions: {questions.length}</Animated.Text>
   )
 }
