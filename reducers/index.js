@@ -17,7 +17,6 @@ const initialState = {
 function quizzes (state=initialState, action){
   const { quizzes } = action
   const { quiz } = action
-  const { key } = action
   const { question } = action
 
   switch(action.type){
