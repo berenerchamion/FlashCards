@@ -5,13 +5,18 @@ import {
   Text,
   TextInput,
   KeyboardAvoidingView,
+  Keyboard,
   TouchableOpacity,
   Platform,
 } from 'react-native'
-import { addNewQuiz } from '../actions'
-import { uuidv4, addQuiz } from '../utils/FlashCardsAPI'
-import { tan, orange } from '../utils/colors'
-import { NavigationActions } from 'react-navigation'
+import {
+  NavigationActions,
+  StackActions,
+}
+  from 'react-navigation'
+import {addNewQuiz, getQuiz} from '../actions'
+import {uuidv4, addQuiz } from '../utils/FlashCardsAPI'
+import { orange } from '../utils/colors'
 import { styles } from '../utils/styles'
 
 function SubmitBtn ({ onPress }) {
@@ -50,6 +55,9 @@ class AddQuiz extends Component{
     const { title } = this.state
     const key = id
 
+    //Android hack for navigation issues
+    Keyboard.dismiss()
+
     if (title !== '' && title !== null){
       this.props.dispatch(addNewQuiz({
         key: key,
@@ -59,16 +67,48 @@ class AddQuiz extends Component{
 
       addQuiz(key, title)
 
+      this.props.dispatch(getQuiz({
+        key: key,
+        title,
+        questions: [],
+      }))
+
+      let q  = {
+        key: key,
+        title,
+        questions: [],
+      }
+
       this.setState(() => ({
         id: null,
         title: null,
       }))
-      this.toHome()
+
+      this.toQuiz(q)
     }
   }
 
-  toHome = () => {
-    this.props.navigation.dispatch(NavigationActions.back({key: 'AddQuiz'}))
+  toQuiz = (q) => {
+    this.props.navigation.navigate('QuizDetails', {quiz: q})
+  }
+
+  toQuizImproved = (q) => {
+    const navigateAction = NavigationActions.navigate({
+      routeName: 'QuizDetails',
+      params: {quiz: q},
+    })
+    this.props.navigation.dispatch(navigateAction)
+  }
+
+  toQuizImprovedMore = (q) => {
+    const navigateAction = NavigationActions.reset({
+      index:0,
+      actions: [
+        NavigationActions.navigate({routeName: 'Quizzes'}),
+        NavigationActions.navigate({routeName: 'QuizDetails', params: {quiz: q},}),
+      ]
+    })
+    this.props.navigation.dispatch(navigateAction)
   }
 
   render(){
