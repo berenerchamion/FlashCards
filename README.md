@@ -2,12 +2,6 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
-## Table of Contents
-* [About Beer Flash Cards](#about-beer-flash-cards)
-* [Updating to New Releases](#updating-to-new-releases)
-* [Available Scripts](#available-scripts)
-  * [npm start](#npm-start)
-
 ## About Flash Cards
 This app is for the Udacity REACT Nanodegree. Its a basic quiz app. Just go in create some quizzes and 
 then as with flash cards when you were a kid indicate if you knew it (honor system). 
@@ -15,6 +9,10 @@ then as with flash cards when you were a kid indicate if you knew it (honor syst
 Pretty simple to get working. Grab the code and do an npm install and then yarn start and you should be good to go.
 
 I've done all my development and testing on Android (API L26).
+
+To get things working, clone or download the code and then run npm install and yarn start
+
+You can run the app in Expo or on a device. 
 
 ## Updating to New Releases
 
